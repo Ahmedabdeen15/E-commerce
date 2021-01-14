@@ -91,17 +91,13 @@ class User_db extends Use_db
 
     }
     public function checklogin($username,$password){
-      $sql="SELECT * FROM users WHERE (userName ='".$username."' OR Email ='".$username."' AND Password ='".$password."');";
+      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `MemberShip`, `ReportId` FROM users WHERE (userName ='".$username."' OR Email ='".$username."' AND Password ='".$password."');";
       $res=$this->useSql($sql);
         $row =$res->fetch_assoc();
         $res=$this->useSql($sql);
-      if (mysqli_num_rows($res)==0)
+      if (!(mysqli_num_rows($res)==0))
       {
-        return 0;
-      }
-      else
-      {
-        return $row['userId'];
+        return $row;
       }
     }
     public function read($Id)
