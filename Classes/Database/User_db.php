@@ -91,7 +91,7 @@ class User_db extends Use_db
 
     }
     public function checklogin($username,$password){
-      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `MemberShip`, `ReportId` FROM users WHERE (userName ='".$username."' OR Email ='".$username."' AND Password ='".$password."');";
+      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `MemberShip`, `ReportId`,`CurrentCartId` FROM users WHERE (userName ='".$username."' OR Email ='".$username."' AND Password ='".$password."');";
       $res=$this->useSql($sql);
         $row =$res->fetch_assoc();
         $res=$this->useSql($sql);
@@ -170,12 +170,17 @@ class User_db extends Use_db
         return $FavProducts;
       }
     }
-    public function ForgetPassword($username,$AnsOfSecurityQ){
+    public function ForgetPassword($username,$AnsOfSecurityQ,$Newpassword){
       $sql="SELECT * FROM `users` WHERE `userName`='".$username."' OR `Email`='".$username."' AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
       $res=$this->useSql($sql);
       if ($res->num_rows==0)
       {
         return false;
+      }
+      else
+      {
+        $sql="UPDATE `users` SET `Password`='".$Newpassword."' WHERE `userName`='".$username."' OR `Email`='".$username."' AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
+        $res=$this->useSql($sql);
       }
     }
     public function checkAllowance($username,$password){
