@@ -12,5 +12,10 @@ class User
     private $MemberShip;
     private $CurrentCartId;
     private $ReportId;
-
+    private $user_db;
+    function __construct()
+    {
+        $this->user_db=new User_db();
+    }
+    
 }
