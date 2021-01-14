@@ -9,5 +9,8 @@ class User
     private $Email;
     private $Address;
     private $Allowance;
-    
+    private $MemberShip;
+    private $CurrentCartId;
+    private $ReportId;
+
 }
