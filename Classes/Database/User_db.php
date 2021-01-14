@@ -91,7 +91,7 @@ class User_db extends Use_db
 
     }
     public function checklogin($username,$password){
-      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `MemberShip`, `ReportId`,`CurrentCartId` FROM users WHERE (userName ='".$username."' OR Email ='".$username."' AND Password ='".$password."');";
+      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `MemberShip`, `ReportId`,`CurrentCartId` FROM users WHERE ((userName ='".$username."' OR Email ='".$username."') AND Password ='".$password."');";
       $res=$this->useSql($sql);
         $row =$res->fetch_assoc();
         $res=$this->useSql($sql);
@@ -125,7 +125,7 @@ class User_db extends Use_db
         $sql.="',`Allowance`='".$Allowance."',`MemberShip`='".$userMemberShip;
         $sql.="' WHERE userId='".$userId."';";
         $this->useSql($sql);
-        return 1;
+        return true;
       }
     }
     private function SetReportId($userId,$ReportId){
@@ -204,5 +204,9 @@ class User_db extends Use_db
         exit("query failed. ");
       return $res;
     }
-    
+    public function changePassword($userId,$Newpassword){
+        $sql="UPDATE `users` SET `Password`='".$Newpassword."' WHERE `userId`='".$userId."';";
+        $this->useSql($sql);
+        
+    }
   }

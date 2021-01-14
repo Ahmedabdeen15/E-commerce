@@ -20,41 +20,43 @@ class User
     }
     function login($User,$password)
     {
-        if($this->user_db->checklogin($User,$password))
+        if($this->user_db->checklogin($User,$password) && $this->user_db->checkAllowance($User,$password) === true)
         {
             $row=$this->user_db->checklogin($User,$password);
             $this->setObject($row);
             // return $row;
+            return true;
         }else{echo "no data";}
     }
     private function setObject($row)
     {
         foreach($row as $key => $cont)
         {
-            // echo "<br>$key => $cont";
+            echo "<br>$key => $cont";
             $this->$key=$cont;
         }
     }
-    function createNewUser($userFirstname,$userSecname,$username,$Password,$Email,
+    function register($userFirstname,$userSecname,$username,$Password,$Email,
     $AnsfSecurityQ,$userMemberShip,$Address)
     {
-        if($this->user_db->Create($userFirstname,$userSecname,$username,$Password,$Email,
-        $AnsfSecurityQ,$userMemberShip,$Address))
+        $userId=$this->user_db->Create($userFirstname,$userSecname,$username,$Password,$Email,
+        $AnsfSecurityQ,$userMemberShip,$Address);
+        if($userId)
         {
-            $this->userFirstname=$userFirstname;
-            $this->userSecname=$userSecname;
-            $this->username=$username;
+            $this->FirstName=$userFirstname;
+            $this->SecName=$userSecname;
+            $this->userName=$username;
             $this->Password=$Password;
             $this->Email=$Email;
-            $this->AnsfSecurityQ=$AnsfSecurityQ;
-            $this->userMemberShip=$userMemberShip;
+            $this->MemberShip=$userMemberShip;
             $this->Address=$Address;
+            $this->userId=$userId;
             return true;
         }
         else
             return false;
     }
-    public function ForgetPassword($username,$AnsOfSecurityQ,$NewPassword)
+    function ForgetPassword($username,$AnsOfSecurityQ,$NewPassword)
     {
         if($this->user_db->ForgetPassword($username,$AnsOfSecurityQ,$NewPassword))
         {
@@ -66,10 +68,15 @@ class User
 
         }
     }
+    function ChangePassword($NewPassword)
+    {
+       $this->user_db->changePassword($this->userId,$NewPassword);
+    }
+    
 }
 // testing
 $x=new User();
-// $row=$x->login("ahmed","ahmed");
+$x->login("ahmed","ahmed");
 // $x->createNewUser("userFirstname","userSecname","ahmed","ahmed","Email",
 // "AnsfSecurityQ","userMemberShip","Address");
 // foreach($row as $key => $cont)
@@ -77,3 +84,4 @@ $x=new User();
         //     echo "<br>$key => $cont";
         // }
 // $x->ForgetPassword("ahmed","AnsfSe1curityQ1","ahmed");
+$x->ChangePassword("ahmed12");
