@@ -68,25 +68,31 @@ class User_db extends Use_db
     public function blacklistuser($id)
     {
       $sql="UPDATE users SET Allowance='0' WHERE userId ='".$id."'";
-      $res=$this->useSql($sql);
-      // echo mysqli_num_rows($res);
-      if (mysqli_num_rows($res)==0)
+      $this->useSql($sql);
+      if ($this->conn->affected_rows)
       {
-        $this->userAllowance=0;
-
-        echo "id not found";
+        return true;
       }
+      else
+      {
+        return false;
+      }
+
 
     }
     public function updateMembership($id,$userMemberShip)
     {
-      $sql="UPDATE users SET Allowance='".$userMemberShip."' WHERE userId ='".$id."'";
-      $res=$this->useSql($sql);
-      // echo mysqli_num_rows($res);
-      if (mysqli_num_rows($res)==0)
+      $sql="UPDATE users SET MemberShip='".$userMemberShip."' WHERE userId ='".$id."'";
+      $this->useSql($sql);
+      //  echo mysqli_num_rows($res);
+      echo $this->conn->affected_rows;
+      if ($this->conn->affected_rows)
       {
-        $this->userMemberShip=$userMemberShip;
-        echo "id not found";
+        return true;
+      }
+      else
+      {
+        return false;
       }
 
     }
@@ -125,7 +131,15 @@ class User_db extends Use_db
         $sql.="',`Allowance`='".$Allowance."',`MemberShip`='".$userMemberShip;
         $sql.="' WHERE userId='".$userId."';";
         $this->useSql($sql);
+        if ($this->conn->affected_rows)
+      {
         return true;
+      }
+      else
+      {
+        return false;
+      }
+
       }
     }
     private function SetReportId($userId,$ReportId){
@@ -136,7 +150,15 @@ class User_db extends Use_db
 
         $sql="UPDATE `users` SET (ReportId) ='".$ReportId."') WHERE userId='".$userId."';";
         $this->useSql($sql);
-        return 1;
+        if ($this->conn->affected_rows)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+
       }
     }
     public function CreateReport($userid,$Report)
@@ -181,7 +203,15 @@ class User_db extends Use_db
       {
         $sql="UPDATE `users` SET `Password`='".$Newpassword."' WHERE `userName`='".$username."' OR `Email`='".$username."' AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
         $res=$this->useSql($sql);
+        if ($this->conn->affected_rows)
+      {
         return true;
+      }
+      else
+      {
+        return false;
+      }
+
       }
     }
     public function checkAllowance($username,$password){
@@ -207,6 +237,14 @@ class User_db extends Use_db
     public function changePassword($userId,$Newpassword){
         $sql="UPDATE `users` SET `Password`='".$Newpassword."' WHERE `userId`='".$userId."';";
         $this->useSql($sql);
-        
+        if ($this->conn->affected_rows)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+
     }
   }

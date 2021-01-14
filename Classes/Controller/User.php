@@ -72,11 +72,18 @@ class User
     {
        $this->user_db->changePassword($this->userId,$NewPassword);
     }
+    public function updateMembership($userMemberShip)
+    {
+        if($this->user_db->updateMembership($this->userId,$userMemberShip))
+        {
+            return true;
+        }
+    }
     
 }
 // testing
 $x=new User();
-$x->login("ahmed","ahmed");
+$x->login("ahmed","ahmed12");
 // $x->createNewUser("userFirstname","userSecname","ahmed","ahmed","Email",
 // "AnsfSecurityQ","userMemberShip","Address");
 // foreach($row as $key => $cont)
@@ -85,3 +92,4 @@ $x->login("ahmed","ahmed");
         // }
 // $x->ForgetPassword("ahmed","AnsfSe1curityQ1","ahmed");
 $x->ChangePassword("ahmed12");
+$x->updateMembership(2);
