@@ -172,9 +172,9 @@ class User_db extends Use_db
     // ------------------
     public function InsertToFav($UseId,$ProductId)
     {
-      $sql="SELECT * FROM `fav` WHERE `userId`='".$UseId."' AND `ProductId`='".$ProductId."'";
+      $sql="SELECT * FROM `fav` WHERE (`userId`='".$UseId."' AND `ProductId`='".$ProductId."')";
       $res=$this->useSql($sql);
-      if ($res->num_rows>0)
+      if ($res->num_rows==0)
       {
         $sql="INSERT INTO `fav`(`userId`, `ProductId`) VALUES ('".$UseId."','".$ProductId."')";
         $this->useSql($sql);

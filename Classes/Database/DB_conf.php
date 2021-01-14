@@ -22,4 +22,5 @@ class DB_conf
 abstract class Use_db extends DB_conf
   {
     private $conn;
+    private function useSql($sql){}
   }
