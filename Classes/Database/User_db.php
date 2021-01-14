@@ -142,6 +142,7 @@ class User_db extends Use_db
 
       }
     }
+    // ----------------------------
     private function SetReportId($userId,$ReportId){
       $sql="SELECT * FROM users WHERE (userId ='".$userId."');";
       $res=$this->useSql($sql);
@@ -168,6 +169,7 @@ class User_db extends Use_db
       $last_id = $this->conn->insert_id;
       $this->SetReportId($userid,$last_id);
     }
+    // ------------------
     public function InsertToFav($UseId,$ProductId)
     {
       $sql="SELECT * FROM `fav` WHERE `userId`='".$UseId."' AND `ProductId`='".$ProductId."'";
@@ -192,6 +194,7 @@ class User_db extends Use_db
         return $FavProducts;
       }
     }
+    // ----------------
     public function ForgetPassword($username,$AnsOfSecurityQ,$Newpassword){
       $sql="SELECT * FROM `users` WHERE (`userName`='".$username."' OR `Email`='".$username."') AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
       $res=$this->useSql($sql);

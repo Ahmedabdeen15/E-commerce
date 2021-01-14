@@ -46,7 +46,6 @@ class User
             $this->FirstName=$userFirstname;
             $this->SecName=$userSecname;
             $this->userName=$username;
-            $this->Password=$Password;
             $this->Email=$Email;
             $this->MemberShip=$userMemberShip;
             $this->Address=$Address;
@@ -72,18 +71,33 @@ class User
     {
        $this->user_db->changePassword($this->userId,$NewPassword);
     }
-    public function updateMembership($userMemberShip)
+    function updateMembership($userMemberShip)
     {
         if($this->user_db->updateMembership($this->userId,$userMemberShip))
         {
             return true;
         }
     }
+    function checkDiscountValue()
+    {
+
+        switch ($this->MemberShip) {
+            case 0:
+                return 0;
+                break;
+            case 1:
+                return 0.10;
+                break;
+            case 2:
+                return 0.15;
+                break;
+        }
+    }
     
 }
 // testing
 $x=new User();
-$x->login("ahmed","ahmed12");
+// $x->login("ahmed","ahmed12");
 // $x->createNewUser("userFirstname","userSecname","ahmed","ahmed","Email",
 // "AnsfSecurityQ","userMemberShip","Address");
 // foreach($row as $key => $cont)
@@ -91,5 +105,6 @@ $x->login("ahmed","ahmed12");
         //     echo "<br>$key => $cont";
         // }
 // $x->ForgetPassword("ahmed","AnsfSe1curityQ1","ahmed");
-$x->ChangePassword("ahmed12");
-$x->updateMembership(2);
+// $x->ChangePassword("ahmed12");
+// $x->updateMembership(2);
+// $x->checkDiscountValue();
