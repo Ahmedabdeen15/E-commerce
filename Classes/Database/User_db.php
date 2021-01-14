@@ -171,7 +171,7 @@ class User_db extends Use_db
       }
     }
     public function ForgetPassword($username,$AnsOfSecurityQ,$Newpassword){
-      $sql="SELECT * FROM `users` WHERE `userName`='".$username."' OR `Email`='".$username."' AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
+      $sql="SELECT * FROM `users` WHERE (`userName`='".$username."' OR `Email`='".$username."') AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
       $res=$this->useSql($sql);
       if ($res->num_rows==0)
       {
@@ -181,6 +181,7 @@ class User_db extends Use_db
       {
         $sql="UPDATE `users` SET `Password`='".$Newpassword."' WHERE `userName`='".$username."' OR `Email`='".$username."' AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
         $res=$this->useSql($sql);
+        return true;
       }
     }
     public function checkAllowance($username,$password){

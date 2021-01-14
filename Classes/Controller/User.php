@@ -61,7 +61,10 @@ class User
             return true;
         }
         else
+        {         
             return false;
+
+        }
     }
 }
 // testing
@@ -73,3 +76,4 @@ $x=new User();
         // {
         //     echo "<br>$key => $cont";
         // }
+// $x->ForgetPassword("ahmed","AnsfSe1curityQ1","ahmed");
