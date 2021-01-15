@@ -20,11 +20,13 @@ class product
         $id=$this->product_db->create($Name,$Description,$Price,$Quantity,$Image_path,$Category);
         if($id===0)
         {
+            $this->productId=$id;
             $this->Name=$Name;
             $this->Price=$Price;
             $this->Quantity=$Quantity;
             $this->Image_path=$Image_path;
             $this->Category=$Category;
+            $this->Description=$Description;
             return true;
         }
     }
@@ -45,4 +47,63 @@ class product
             $this->$key=$cont;
         }
     }
+    // -------------------------------------
+    function SetproductId($productId)
+    {
+        $this->productId=$productId;
+    }
+    function SetName($Name)
+    {
+        $this->Name=$Name;
+    }
+    function SetPrice($Price)
+    {
+        $this->Price=$Price;
+    }
+    function SetQuantity($Quantity)
+    {
+        $this->Quantity=$Quantity;
+    }
+    function SetImage_path($Image_path)
+    {
+        $this->Image_path=$Image_path;
+    }
+    function SetDescription($Description)
+    {
+        $this->Description=$Description;
+    }
+    function SetCategory($Category)
+    {
+    $this->Category=$Category;
+    }
+    // -------------------------------------
+    function getproductId()
+    {
+        return $this->productId;
+    }
+    function getName()
+    {
+        return $this->Name;
+    }
+    function getPrice()
+    {
+        return $this->Price;
+    }
+    function getQuantity()
+    {
+        return $this->Quantity;
+    }
+    function getImage_path()
+    {
+        return $this->Image_path;
+    }
+    function getDescription()
+    {
+        return $this->Description;
+    }
+    function getCategory()
+    {
+        return $this->Category;
+    }
+    // ------------------------------------
 }
