@@ -27,7 +27,7 @@ class cart_db extends Use_db
     if ($res->num_rows!=0)
     {
       while ($row =$res->fetch_assoc()) {
-        $Products[]=$row;
+        $Products[]=$row['ProductId'];
       }
       return $Products;
     }
@@ -59,7 +59,7 @@ class cart_db extends Use_db
       $sql.="(`ProductId`='".$ProductId."' AND `cartId`='".$CartID."');";
       // echo $sql;
       $this->useSql($sql);
-        return 1;
+        return true;
     }
   }
   // delete the hole cart
@@ -79,7 +79,7 @@ class cart_db extends Use_db
   // I can view list of users who bought a certain product.
   public function GetAllUserThatBoughtProduct($search_key)
   {
-      $sql="SELECT * FROM `object_in_cart` WHERE `ProductId`= '".$search_key."';";
+      $sql="SELECT * FROM `object_in_cart` WHERE `ProductId`= '%".$search_key."%';";
       $res=$this->useSql($sql);
       $num_rows=$res->num_rows;
       if($num_rows>0)
@@ -97,7 +97,7 @@ class cart_db extends Use_db
         if($num_rows>0)
         {
           $row =$res->fetch_assoc();
-            $users[]=$row;
+            $users[]=$row['cartOwner'];
         }
        }
       
@@ -106,9 +106,9 @@ class cart_db extends Use_db
   }
   public function buy($CartID)
   {
-    $sql="UPDATE `Object_In_cart` SET `sold`='1' WHERE (cartId ='".$CartID."');";
+    $sql="UPDATE `Object_In_cart` SET `sold`='1' WHERE (cartId ='%".$CartID."%');";
     $this->useSql($sql);
-    $sql="UPDATE `carts` SET `cartStatus`='1' WHERE (cartId ='".$CartID."');";
+    $sql="UPDATE `carts` SET `cartStatus`='1' WHERE (cartId ='%".$CartID."%');";
     $this->useSql($sql);
   }
   private function useSql($sql)
@@ -135,5 +135,5 @@ $ll=new cart_db();
 // how to print associative array
 // foreach($users as $user)
       // {
-      //   echo '<br>'.$user['cartOwner'].'<br>';
+      //   echo '<br>'.$user.'<br>';
       // }
