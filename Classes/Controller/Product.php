@@ -110,6 +110,10 @@ class product
         
         return $Products_Object_Array;
     }
+    function DecrementQuantity($search_key,$Quantity)
+    {
+        $this->DecrementQuantity($search_key,$Quantity);
+    }
     // -------------------------------------
     function SetproductId($productId)
     {
