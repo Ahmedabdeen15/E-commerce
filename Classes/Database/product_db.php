@@ -112,7 +112,8 @@ class product_db extends Use_db
 
     public function Search($search_key)
     {
-      $sql="SELECT * FROM `products` WHERE CONCAT(`Name`) LIKE '".$search_key."'";
+      $sql="SELECT * FROM `products` WHERE CONCAT(`Name`) LIKE '%".$search_key."%'";
+      // echo $sql;
         $res=$this->useSql($sql);
         $num_rows=$res->num_rows;
       if($num_rows>0)
@@ -121,11 +122,11 @@ class product_db extends Use_db
           $Products[]=$row;
         }
       
-        foreach($Products as $Product)
-        {
-          foreach($Product as $product=>$res)
-            echo "<br>$product=$res<br>";
-        }
+        // foreach($Products as $Product)
+        // {
+        //   foreach($Product as $product=>$res)
+        //     echo "<br>$product=$res<br>";
+        // }
         return $Products;
       }
     }
