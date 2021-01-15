@@ -143,13 +143,13 @@ class User_db extends Use_db
       }
     }
     // ----------------------------
-    private function SetReportId($userId,$ReportId){
+    function SetReportId($userId,$Report){
       $sql="SELECT * FROM users WHERE (userId ='".$userId."');";
       $res=$this->useSql($sql);
       if ($res->num_rows>0)
       {
 
-        $sql="UPDATE `users` SET (ReportId) ='".$ReportId."') WHERE userId='".$userId."';";
+        $sql="UPDATE `users` SET (ReportId) ='".$Report."') WHERE userId='".$userId."';";
         $this->useSql($sql);
         if ($this->conn->affected_rows)
       {
@@ -162,39 +162,8 @@ class User_db extends Use_db
 
       }
     }
-    public function CreateReport($userid,$Report)
-    {
-      $sql="INSERT INTO `report`(`TextReport`, `userId`) VALUES ('".$Report."','".$userid."')";
-      $this->useSql($sql);
-      $last_id = $this->conn->insert_id;
-      $this->SetReportId($userid,$last_id);
-    }
-    // ------------------
-    public function InsertToFav($UseId,$ProductId)
-    {
-      $sql="SELECT * FROM `fav` WHERE (`userId`='".$UseId."' AND `ProductId`='".$ProductId."')";
-      $res=$this->useSql($sql);
-      if ($res->num_rows==0)
-      {
-        $sql="INSERT INTO `fav`(`userId`, `ProductId`) VALUES ('".$UseId."','".$ProductId."')";
-        $this->useSql($sql);
-        return 1;
-      }
-    }
-    public function GetFavList($UseId)
-    {
-      $sql="SELECT * FROM `fav` WHERE `userId`='".$UseId."';";
-      $res=$this->useSql($sql);
-        $num_rows=$res->num_rows;
-      if($num_rows>0)
-      {
-        while ($row =$res->fetch_assoc()) {
-          $FavProducts[]=$row;
-        }
-        return $FavProducts;
-      }
-    }
-    // ----------------
+    
+    
     public function ForgetPassword($username,$AnsOfSecurityQ,$Newpassword){
       $sql="SELECT * FROM `users` WHERE (`userName`='".$username."' OR `Email`='".$username."') AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
       $res=$this->useSql($sql);
