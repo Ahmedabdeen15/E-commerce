@@ -11,11 +11,12 @@ class product_db extends Use_db
 
     public function create($Name,$Description,$Price,$Quantity,$Image_path,$Category)
     {
-      $sql="SELECT * FROM products WHERE (Name ='".$Name."');";
+      $sql="SELECT * FROM `products` WHERE `Name`='".$Name."';";
       $res=$this->useSql($sql);
-      if ($res->num_rows==0)
+      // echo $res->num_rows."<br>";
+      if ($res->num_rows===0)
       {
-
+        echo "leh";
         $sql="INSERT INTO `products`(`Name`, `Price`, `Quantity`, `Image_path`, `Description`,`Category`)";
         $sql.= "VALUES ('".$Name."','".$Price."','".$Quantity."','".$Image_path."','".$Description."','".$Category."');";
         $this->useSql($sql);
@@ -28,8 +29,9 @@ class product_db extends Use_db
     {
         //for testing purpose only
         echo 'duplicted data';
-        return 0;
+        return "x";
     }
+    return 0;
     }
 
     public function Read($search_key)
@@ -61,11 +63,11 @@ class product_db extends Use_db
         // echo $sql;
         $res=$this->useSql($sql);
       }
-      else
-      {
-        echo "not found";
-        return 0;
-      }
+      // else
+      // {
+      //   echo "not found";
+      //   return 0;
+      // }
     }
     public function Delete($search_key)
     {
@@ -179,8 +181,8 @@ class product_db extends Use_db
     }
   }
   // testing the class
-  $lol=new product_db();
-  $lol->create("Name2","Description","Price","Quantity","Image_path","category2");
+  // $lol=new product_db();
+  // $lol->create("Name2","Description","Price","Quantity","Image_path","category2");
   // $lol->DecrementQuantity(2);
   // $lol->Update(1,"Name","Description","Price","Quantity","Image_path");
   // $lol->Delete(1);

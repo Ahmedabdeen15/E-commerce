@@ -18,7 +18,7 @@ class product
     function create($Name,$Description,$Price,$Quantity,$Image_path,$Category)
     {
         $id=$this->product_db->create($Name,$Description,$Price,$Quantity,$Image_path,$Category);
-        if($id===0)
+        if($id!=0)
         {
             $this->productId=$id;
             $this->Name=$Name;
@@ -107,3 +107,14 @@ class product
     }
     // ------------------------------------
 }
+// $x=new product();
+// $l=$x->create("mobile4 3a4an fyi mo4kla","samsung w 2let 2dab y3ny",9999999,6,"3andha","3andha bardo");
+// // echo $l."<br>";
+// // $x->Read(4);
+// echo $x-> getproductId()
+//     .$x-> getName()
+//     .$x-> getPrice()
+//     .$x-> getQuantity()
+//     .$x-> getImage_path()
+//     .$x-> getDescription()
+//     .$x-> getCategory();
