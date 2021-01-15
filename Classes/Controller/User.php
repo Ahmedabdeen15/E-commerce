@@ -24,7 +24,6 @@ class User
         {
             $row=$this->user_db->checklogin($User,$password);
             $this->setObject($row);
-            // return $row;
             return true;
         }else{echo "no data";}
     }
@@ -93,11 +92,32 @@ class User
                 break;
         }
     }
-    
+    function SetReport($Report)
+    {
+        if($this->user_db->SetReport($this->userId,$Report))
+            return true;
+    }
+    function GetReport(){
+        if($this->user_db->GetReport($this->userId))
+        {
+            $rep=$this->user_db->GetReport($this->userId);
+            return $rep;
+        }
+            
+    }
+    function setObjectByid($UserId)
+    {
+        if($this->user_db->read($UserId))
+        {
+            $row=$this->user_db->read($UserId);
+            $object=$this->setObject($row);
+            return $object;
+        }
+    }
 }
 // testing
 $x=new User();
-// $x->login("ahmed","ahmed12");
+$x->login("ahmed","ahmed12");
 // $x->createNewUser("userFirstname","userSecname","ahmed","ahmed","Email",
 // "AnsfSecurityQ","userMemberShip","Address");
 // foreach($row as $key => $cont)
@@ -108,3 +128,6 @@ $x=new User();
 // $x->ChangePassword("ahmed12");
 // $x->updateMembership(2);
 // $x->checkDiscountValue();
+// $x->SetReport("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+// $test=$x->GetReport();
+// echo $test;

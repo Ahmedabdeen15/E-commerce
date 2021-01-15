@@ -108,16 +108,15 @@ class User_db extends Use_db
     }
     public function read($Id)
     {
-      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `MemberShip`,`CurrentCartId`, `ReportId` FROM `users` WHERE (`userId`) = '".$Id."'";
+      $sql="SELECT `userId`, `FirstName`, `SecName`, `userName`, `Email`, `Address`, `Allowance`, `MemberShip`, `AnsOfSecurityQ`, `Report`, `CurrentCartId` FROM `admin` WHERE (`userId`) = '".$Id."'";
         $res=$this->useSql($sql);
         $num_rows=$res->num_rows;
       if($num_rows>0)
       {
-        while ($row =$res->fetch_assoc()) {
-          $Users[]=$row;
-        }
-        return $Users;
+        $row =$res->fetch_assoc();
+        return $row;
       }
+
     }
     public function Update($userId,$userFirstname,$userSecname,$username
                             ,$userMemberShip,$Address,$Allowance){
@@ -143,13 +142,13 @@ class User_db extends Use_db
       }
     }
     // ----------------------------
-    function SetReportId($userId,$Report){
+    function SetReport($userId,$Report){
       $sql="SELECT * FROM users WHERE (userId ='".$userId."');";
       $res=$this->useSql($sql);
       if ($res->num_rows>0)
       {
-
-        $sql="UPDATE `users` SET (ReportId) ='".$Report."') WHERE userId='".$userId."';";
+        $Report=$this->conn->real_escape_string($Report);
+        $sql="UPDATE `users` SET ReportId ='".$Report."' WHERE userId='".$userId."';";
         $this->useSql($sql);
         if ($this->conn->affected_rows)
       {
@@ -162,8 +161,16 @@ class User_db extends Use_db
 
       }
     }
-    
-    
+    function GetReport($userId){
+      $sql="SELECT ReportId FROM users WHERE (userId ='".$userId."');";
+      $res=$this->useSql($sql);
+      if ($res->num_rows>0)
+      {
+        $row =$res->fetch_assoc();
+        // echo $row['ReportId']."11<br>";
+        return $row['ReportId'];
+    }
+  }
     public function ForgetPassword($username,$AnsOfSecurityQ,$Newpassword){
       $sql="SELECT * FROM `users` WHERE (`userName`='".$username."' OR `Email`='".$username."') AND `AnsOfSecurityQ`='".$AnsOfSecurityQ."';";
       $res=$this->useSql($sql);
@@ -204,7 +211,7 @@ class User_db extends Use_db
       $res=$this->conn->query($sql);
       if(!$res)
         exit("query failed. ");
-      return $res;
+        return $res;
     }
     public function changePassword($userId,$Newpassword){
         $sql="UPDATE `users` SET `Password`='".$Newpassword."' WHERE `userId`='".$userId."';";
