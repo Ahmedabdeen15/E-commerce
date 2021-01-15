@@ -41,11 +41,11 @@ class product_db extends Use_db
         $row =$res->fetch_assoc();
         return $row;
       }
-      else {
-        // for testing perpuse only
-        echo "<br>not found";
-        // return 0;
-      }
+      // else {
+      //   // for testing perpuse only
+      //   echo "<br>not found";
+      //   // return 0;
+      // }
     }
     public function Update($search_key,$Name,$Description,$Price,$Quantity,$Image_path,$Category)
     {
