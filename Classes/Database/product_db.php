@@ -109,7 +109,36 @@ class product_db extends Use_db
         return $Products;
       }
     }
-
+    public function getCategories()
+    {
+      $Products=$this->getAllProducts();
+      $Categorys[]=$Products[0]['Category'];
+      foreach($Products as $product)
+      {
+        // echo "1<br>".$product['Category'];
+        $flag=0;
+          foreach($Categorys as $Category)
+          {
+              if($product['Category']==$Category)
+              {
+                  $flag=1;
+                  break;
+              }
+             }
+              if($flag!=1)
+              {
+                $Categorys[]=$product['Category'];
+                // echo $product['Category'];
+              }
+              
+              
+      }
+      // foreach($Categorys as $Category)
+      //         {
+      //           echo "<br>1".$Category;
+      //         }
+      return $Categorys;
+    }
     public function Search($search_key)
     {
       $sql="SELECT * FROM `products` WHERE CONCAT(`Name`) LIKE '%".$search_key."%'";
@@ -143,36 +172,7 @@ class product_db extends Use_db
       return $Products;
     }
     }
-    public function getCategories()
-    {
-      $Products=$this->getAllProducts();
-      $Categorys[]=$Products[0]['Category'];
-      foreach($Products as $product)
-      {
-        // echo "1<br>".$product['Category'];
-        $flag=0;
-          foreach($Categorys as $Category)
-          {
-              if($product['Category']==$Category)
-              {
-                  $flag=1;
-                  break;
-              }
-             }
-              if($flag!=1)
-              {
-                $Categorys[]=$product['Category'];
-                // echo $product['Category'];
-              }
-              
-              
-      }
-      // foreach($Categorys as $Category)
-      //         {
-      //           echo "<br>1".$Category;
-      //         }
-      return $Categorys;
-    }
+    
     private function useSql($sql)
     {
       $res=$this->conn->query($sql);

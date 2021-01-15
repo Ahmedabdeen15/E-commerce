@@ -50,6 +50,13 @@ class product
         
         return $Products_Object_Array;
     }
+    function getAllProducts()
+    {
+        $Products_Array=$this->product_db->getAllProducts();
+        $Products_Object_Array=$this->setArrayOfObject($Products_Array);
+        return $Products_Object_Array;
+    }
+    
     // -----------------------------------
     private function setArrayOfObject($Products_Array)
     {
@@ -83,6 +90,25 @@ class product
             // echo "<br>$key => $cont";
             $this->$key=$cont;
         }
+    }
+    function Delete($search_key)
+    {
+        $this->product_db->Delete($search_key);
+    }
+    function Update($search_key,$Name,$Description,$Price,$Quantity,$Image_path,$Category)
+    {
+        $this->product_db->Update($search_key,$Name,$Description,$Price,$Quantity,$Image_path,$Category);
+    }
+    function getCategories()
+    {
+        return $this->product_db->getCategories();
+    }
+    function FilterCategory($search_key)
+    {
+        $Products_Array=$this->product_db->FilterCategory($search_key);
+        $Products_Object_Array=$this->setArrayOfObject($Products_Array);
+        
+        return $Products_Object_Array;
     }
     // -------------------------------------
     function SetproductId($productId)
@@ -156,9 +182,10 @@ $x=new product();
 //     .$x-> getDescription()
 //     .$x-> getCategory();
 // $ar=$x->Search("Name");
+// $ar=$x->getAllProducts();
 // foreach($ar as $art)
 // {
-//     echo $art-> getproductId()
+//     echo "<br>".$art-> getproductId()
 //     .$art-> getName()
 //     .$art-> getPrice()
 //     .$art-> getQuantity()
