@@ -31,7 +31,7 @@ class User
     {
         foreach($row as $key => $cont)
         {
-            echo "<br>$key => $cont";
+            // echo "<br>$key => $cont";
             $this->$key=$cont;
         }
     }
