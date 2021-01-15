@@ -58,13 +58,13 @@ class FavProducts{
     }
 }
 // ----------------------------
-$x=new FavProducts();
-$x->InsertToFav("5514","99");
-$x->InsertToFav("5514","22");
-$x->InsertToFav("888","554");
-$ar=$x->GetFavList(5514);
-foreach($ar as $art)
-{
-    echo $art->GetUserId()."<br/>";
-    echo $art->GetProductId()."<br/>";
-}
+// $x=new FavProducts();
+// $x->InsertToFav("5514","99");
+// $x->InsertToFav("5514","22");
+// $x->InsertToFav("888","554");
+// $ar=$x->GetFavList(5514);
+// foreach($ar as $art)
+// {
+//     echo $art->GetUserId()."<br/>";
+//     echo $art->GetProductId()."<br/>";
+// }
