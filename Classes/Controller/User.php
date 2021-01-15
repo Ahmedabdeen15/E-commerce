@@ -114,6 +114,13 @@ class User
             return $object;
         }
     }
+    function blacklistuser()
+    {
+        if($this->user_db->blacklistuser($this->userId))
+        {
+            return true;
+        }
+    }
 }
 // testing
 $x=new User();
