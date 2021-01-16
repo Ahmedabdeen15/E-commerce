@@ -120,6 +120,14 @@ class User
             return true;
         }
     }
+    function read($Id)
+    {
+        if($this->user_db->read($Id))
+        {
+            $row=$this->user_db->read($Id);
+            $this->setObject($row);
+        }
+    }
 }
 // testing
 $x=new User();
