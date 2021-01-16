@@ -22,17 +22,13 @@ class Admin_db extends Use_db
       }
   }
     public function checklogin($username,$password){
-      $sql="SELECT * FROM admin WHERE (userName ='".$username."' OR userEmail ='".$username."' AND userPassword ='".$password."');";
+      $sql="SELECT `userId`, `userFirstname`, `userSecname`, `userName`, `userEmail` FROM admin WHERE (userName ='".$username."' OR userEmail ='".$username."' AND userPassword ='".$password."');";
       $res=$this->useSql($sql);
+      $num_rows=$res->num_rows;
+    if($num_rows>0)
+    {
       $row =$res->fetch_assoc();
-      $res=$this->useSql($sql);
-    if (mysqli_num_rows($res)==0)
-    {
-      return 0;
-    }
-    else
-    {
-      return $row['userId'];
+      return $row;
     }
   }
     public function ForgetPassword($username,$AnsOfSecurityQ){
