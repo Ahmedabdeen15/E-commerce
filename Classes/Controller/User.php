@@ -110,8 +110,7 @@ class User
         if($this->user_db->read($UserId))
         {
             $row=$this->user_db->read($UserId);
-            $object=$this->setObject($row);
-            return $object;
+            $this->setObject($row);
         }
     }
     function blacklistuser()
