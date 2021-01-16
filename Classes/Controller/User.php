@@ -128,10 +128,43 @@ class User
             $this->setObject($row);
         }
     }
+    // 
+    function GetReportId(){
+        return $this->ReportId;
+    }
+    function GetCurrentCartId(){
+        return $this->CurrentCartId;
+    }
+    function GetMemberShip(){
+        return $this->MemberShip;
+    }
+    function GetAllowance(){
+        return $this->Allowance;
+    }
+    function GetAddress(){
+        return $this->Address;
+    }
+    function GetEmail(){
+        return $this->Email;
+    }
+    function GetuserName(){
+        return $this->userName;
+    }
+    function GetSecName(){
+        return $this->SecName;
+    }
+    function GetFirstName(){
+        return $this->FirstName;
+    }
+    function GetuserId(){
+        return $this->userId;
+    }
+
+    // 
 }
 // testing
-$x=new User();
-$x->login("ahmed","ahmed12");
+// $x=new User();
+// $x->login("ahmed","ahmed12");
 // $x->createNewUser("userFirstname","userSecname","ahmed","ahmed","Email",
 // "AnsfSecurityQ","userMemberShip","Address");
 // foreach($row as $key => $cont)
