@@ -103,11 +103,11 @@ class product_db extends Use_db
           $Products[]=$row;
         }
       
-        foreach($Products as $Product)
-        {
-          foreach($Product as $product=>$res)
-            echo "<br>$product=$res<br>";
-        }
+        // foreach($Products as $Product)
+        // {
+        //   foreach($Product as $product=>$res)
+        //     echo "<br>$product=$res<br>";
+        // }
         return $Products;
       }
     }

@@ -27,8 +27,7 @@ class Admin_db extends Use_db
       }
   }
     public function checklogin($username,$password){
-      $sql="SELECT `userId`, `userFirstname`, `userSecname`, `userName`, `userEmail` FROM admin WHERE (userName ='".$username."' OR userEmail ='".$username."' AND userPassword ='".$password."');";
-      echo $sql;
+      $sql="SELECT `userId`, `userFirstname`, `userSecname`, `userName`, `userEmail` FROM admin WHERE ((userName ='".$username."' OR userEmail ='".$username."') AND userPassword ='".$password."');";
       $res=$this->useSql($sql);
       $num_rows=$res->num_rows;
     if($num_rows>0)
