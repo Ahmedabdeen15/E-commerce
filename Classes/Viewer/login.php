@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php include 'C:\xampp\htdocs\project\Classes\Viewer\login_serv.php';
+  
+  
+  ?>
 <head>
 <meta charset="UTF-8">
     <title>H.A.M Online</title>
@@ -54,35 +58,35 @@
                      </div>
                      <!-- ----------------------------------------------------------- -->
                      <form id="LoginForm" action="login_serv.php" method="post">
-                         <input type="email" placeholder="email" name="username">
+                         <input type="text" placeholder="email" name="username">
                          <input type="password" placeholder="password" name="password">
                          <button type="submit" class="btn" name="submit">LogIn</button>
                          <a herf="">Forget Password</a>
                      </form>
                      <!-- ------------------------------------------------------------ -->
-                     <form id="RegForm">
-                      <input type="text" placeholder="FirstName">
-                      <input type="text" placeholder="SecondName">
-                      <input type="text" placeholder="Adresses">
-                     <input type="text" placeholder="Username">
-                      <input type="email" placeholder="email">
-                     <input type="password" placeholder="password">
-                         <input type="reset password" placeholder="reset password">
-                        <select name ="" id= "" >
+                     <form id="RegForm" action="login_create.php" method="post">
+                      <input type="text" placeholder="FirstName" name="FirstName">
+                      <input type="text" placeholder="SecondName" name="SecondName">
+                      <input type="text" placeholder="Adresses" name="Adresses">
+                     <input type="text" placeholder="Username" name="Username">
+                      <input type="email" placeholder="email"name="email">
+                     <input type="password" placeholder="password"name="password">
+                         <!-- <input type="reset password" placeholder="reset password" > -->
+                        <select >
                            <option>Security Questions</option>
                            <option>What was your childhood nickname?</option>
                            <option>What is your favorite animal?</option>
                            <option>What is your favorite sport?</option>
                            <option> What is your favorite color? </option>
                         </select>
-                           <input type="text" placeholder="Anwser">
-                        <select name ="" id= "" >
+                           <input type="text" placeholder="Anwser" >
+                        <select name="membership" >
                            <option>Select Your MemberShip</option>
-                           <option>Normal</option>
-                           <option>Platinum</option>
-                           <option>Gold</option>
+                           <option value=0>Normal</option>
+                           <option value=1>Gold</option>
+                           <option value=2>Platinum</option>
                         </select>
-                         <button type="submit" class="btn">Register</button>
+                         <button type="submit" class="btn" name ="submit">Register</button>
                      </form>
                  </div>
              </div>

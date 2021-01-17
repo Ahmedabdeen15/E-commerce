@@ -209,6 +209,13 @@
           </div>
           <p>$50.00</p>
         </div>
+        <button type="submit" name="save" style="background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;">
         <div class = "col-4"> 
         <img src="images/watch4.png">
           <h4> Rolex Watch </h4> 
@@ -220,7 +227,8 @@
              <i class="fas fa-star"></i>
           </div>
           <p>$500.00</p>
-        </div>'; ?>
+        </div>
+        </button>'; ?>
       </div>
       <div class="row">
         <div class = "page-btn">

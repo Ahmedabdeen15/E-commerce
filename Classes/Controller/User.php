@@ -25,7 +25,7 @@ class User
             $row=$this->user_db->checklogin($User,$password);
             $this->setObject($row);
             return true;
-        }else{echo "no data";}
+        }
     }
     private function setObject($row)
     {
