@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php include 'C:\xampp\htdocs\project\Classes\Viewer\login_serv.php';
-  
-  
+  <?php 
+  //include 'C:\xampp\htdocs\project\Classes\Viewer\login_serv.php';
+  session_start();
+
   ?>
 <head>
 <meta charset="UTF-8">
@@ -58,13 +59,20 @@
                      </div>
                      <!-- ----------------------------------------------------------- -->
                      <form id="LoginForm" action="login_serv.php" method="post">
+                       <?php if(isset($_SESSION['error']))
+                        {  echo '<div class="form-btn">
+                          <h3 style="color: red;">'.$_SESSION['error'].' </h3>
+                      </div>';
+                          unset($_SESSION['error']);
+                        } 
+                        ?>
                          <input type="text" placeholder="email" name="username">
                          <input type="password" placeholder="password" name="password">
                          <button type="submit" class="btn" name="submit">LogIn</button>
                          <a herf="">Forget Password</a>
                      </form>
                      <!-- ------------------------------------------------------------ -->
-                     <form id="RegForm" action="login_create.php" method="post">
+                     <form id="RegForm" action="create_user.php" method="post">
                       <input type="text" placeholder="FirstName" name="FirstName">
                       <input type="text" placeholder="SecondName" name="SecondName">
                       <input type="text" placeholder="Adresses" name="Adresses">

@@ -25,7 +25,8 @@ if(isset($_POST['submit']))
         header("location: "."Index_dd.php");
     }
     else{
-        echo "Error";
+        $_SESSION['error']='Invalid username or password';
+        header("location: "."login.php");
     }
     
 }
