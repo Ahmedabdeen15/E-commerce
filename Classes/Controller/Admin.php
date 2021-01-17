@@ -18,6 +18,7 @@ class Admin
         {
             $row=$this->Admin_db->checklogin($username,$password);
             $this->setObject($row);
+            return true;
         }
 
     }
@@ -44,5 +45,30 @@ class Admin
             $this->$key=$cont;
         }
     }
-
+    // ----------------------------------
+    /*$userId;
+    private $userFirstname;
+    private $userSecname;
+    private $userName;
+    private $userEmail; */
+    function GetuserId()
+    {
+        return $this->userId;
+    }
+    function GetuserFirstname()
+    {
+        return $this->userFirstname;
+    }
+    function GetuserSecname()
+    {
+        return $this->userSecname;
+    }
+    function GetuserName()
+    {
+        return $this->userName;
+    }
+    function GetuserEmail()
+    {
+        return $this->userEmail;
+    }
 }

@@ -1,5 +1,10 @@
 <?php
-include 'DB_conf.php';
+// try {
+//   include 'DB_conf.php';
+// }
+// catch(Exception $e) {
+//   // echo 'Message: ' .$e->getMessage();
+// }
 class Admin_db extends Use_db
   {
     private $conn;
@@ -23,6 +28,7 @@ class Admin_db extends Use_db
   }
     public function checklogin($username,$password){
       $sql="SELECT `userId`, `userFirstname`, `userSecname`, `userName`, `userEmail` FROM admin WHERE (userName ='".$username."' OR userEmail ='".$username."' AND userPassword ='".$password."');";
+      echo $sql;
       $res=$this->useSql($sql);
       $num_rows=$res->num_rows;
     if($num_rows>0)
