@@ -12,14 +12,16 @@ class product_db extends Use_db
     public function create($Name,$Description,$Price,$Quantity,$Image_path,$Category)
     {
       $sql="SELECT * FROM `products` WHERE `Name`='".$Name."';";
+      echo $sql;
       $res=$this->useSql($sql);
       // echo $res->num_rows."<br>";
       if ($res->num_rows===0)
       {
-        echo "leh";
+        // echo "leh";
         $sql="INSERT INTO `products`(`Name`, `Price`, `Quantity`, `Image_path`, `Description`,`Category`)";
         $sql.= "VALUES ('".$Name."','".$Price."','".$Quantity."','".$Image_path."','".$Description."','".$Category."');";
         $this->useSql($sql);
+        echo $sql;
         $sql="SELECT productId FROM products WHERE (Name ='".$Name."');";
         $res=$this->useSql($sql);
         $row =$res->fetch_assoc();
