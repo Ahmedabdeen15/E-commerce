@@ -17,11 +17,14 @@ if(isset($_POST['submit']))
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     if($product->create($_POST['Name'],$_POST['Description'],$_POST['Price'],$_POST['Quantity'],$target_file,$_POST['Category']))
                     {
-                        header("location: "."details.php");
+                        $_SESSION['product']=$product;
+                        
                         if(isset($_SESSION['error']))
                         {
                             unset($_SESSION['error']);
                         }
+                        header("location: "."details.php");
+                        
                     }
                     else
                     {
